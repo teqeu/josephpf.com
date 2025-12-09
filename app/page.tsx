@@ -1,20 +1,25 @@
-import { Sidebar } from "@/components/sidebar"
+import { Navbar } from "@/components/Navbar"
 import { MainContent } from "@/components/main-content"
 import { BottomBanner } from "@/components/bottom-banner"
 import { Starfield } from "@/components/starfield"
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-hidden bg-black">
+      {/* Background Effects */}
       <Starfield />
 
-      <div className="relative z-10 container mx-auto px-4 py-8 lg:py-12">
-        <div className="grid lg:grid-cols-[400px_1fr] gap-6 lg:gap-8">
-          <Sidebar />
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Page Content */}
+      <div className="relative z-10 flex justify-center px-4 py-8 lg:py-12">
+        <div className="w-full max-w-5xl">
           <MainContent />
         </div>
       </div>
 
+      {/* Footer / Bottom Banner */}
       <BottomBanner />
     </main>
   )
