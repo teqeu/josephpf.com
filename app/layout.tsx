@@ -1,32 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { JetBrains_Mono } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
+import { Suspense } from "react"
 import "./globals.css"
 
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
-
 export const metadata: Metadata = {
-  title: "Joseph",
-  description: "Full-stack dev",
-  generator: "joseph",
-  icons: {
-    icon: [
-      {
-        url: "/",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
+  title: "joseph",
+  description:
+    "i make stuff",
 }
 
 export default function RootLayout({
@@ -35,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${jetbrainsMono.className} antialiased`}>
-        {children}
+    <html lang="en" className="scroll-smooth">
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
     </html>
