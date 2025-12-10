@@ -1,8 +1,8 @@
 "use client"
+
 import { useState } from "react"
-import { Github, Instagram, Mail, Youtube, Menu } from "lucide-react"
+import { Github, Menu } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card } from "@/components/ui/card"
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -13,9 +13,6 @@ const navLinks = [
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/teqeu", label: "GitHub" },
-  { icon: Instagram, href: "https://instagram.com/yourhandle", label: "Instagram" },
-  { icon: Mail, href: "mailto:you@example.com", label: "Email" },
-  { icon: Youtube, href: "https://youtube.com/channel/yourchannel", label: "YouTube" },
 ]
 
 export function Navbar() {
@@ -24,13 +21,14 @@ export function Navbar() {
     "backdrop-blur-3xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl transition-all duration-300"
 
   return (
-    <nav className={`w-full flex justify-center`}>
-      {/* Centered container to limit width */}
-      <div className={`flex items-center justify-between px-4 py-3 w-full max-w-4xl ${glassStyle}`}>
+    <nav className="w-full flex justify-center relative">
+      <div
+        className={`flex items-center justify-between px-4 py-3 w-full max-w-4xl ${glassStyle}`}
+      >
         {/* Left: Logo / Avatar */}
         <div className="flex items-center gap-3">
           <Avatar className="h-12 w-12 border-2 border-white/20">
-            <AvatarImage src="/profile.jpg" alt="Profile" />
+            <AvatarImage src="/joseph.jpg" alt="Profile" />
             <AvatarFallback>J</AvatarFallback>
           </Avatar>
           <span className="text-white font-bold text-lg">Joseph</span>
@@ -50,20 +48,23 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Right: Social Icons */}
+        {/* Right: Social Icons + Mobile Menu */}
         <div className="flex items-center gap-3">
-          {socialLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-8 w-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
-              aria-label={link.label}
-            >
-              <link.icon className="h-4 w-4 text-gray-200" />
-            </a>
-          ))}
+          {socialLinks.map((link) => {
+            const Icon = link.icon
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-8 w-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+                aria-label={link.label}
+              >
+                <Icon className="h-4 w-4 text-gray-200" />
+              </a>
+            )
+          })}
 
           {/* Mobile Menu Button */}
           <button
@@ -78,7 +79,7 @@ export function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <ul className="absolute top-16 left-4 right-4 bg-white/10 border border-white/20 rounded-3xl p-4 flex flex-col gap-3 md:hidden backdrop-blur-3xl max-w-4xl mx-auto">
+        <ul className="absolute top-full left-0 right-0 bg-white/10 border border-white/20 rounded-3xl p-4 flex flex-col gap-3 md:hidden backdrop-blur-3xl max-w-4xl mx-auto mt-2">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
